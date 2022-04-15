@@ -1,0 +1,43 @@
+[
+{
+    "id":"0",   
+    "code":"<span>export default function createMiddleware(clientMiddleware) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;const middleware = applyMiddleware(clientMiddleware);</span><span>&nbsp;&nbsp;&nbsp;&nbsp;const composeEnhancers =</span><span>&nbsp;&nbsp;&nbsp;&nbsp;typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span><span>&nbsp;&nbsp;&nbsp;&nbsp;? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({</span><span>&nbsp;&nbsp;&nbsp;&nbsp;})</span><span>&nbsp;&nbsp;&nbsp;&nbsp;:compose;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;return composeEnhancers(middleware);</span><span>}</span>"
+},    
+{
+    "id":"1",   
+    "code":"<span>router.post('/books/add', async (req, res) => {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;try {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const book = await Book.add(Object.assign({ userId: req.user.id }, req.body));</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.json(book);</span><span>&nbsp;&nbsp;&nbsp;&nbsp;} catch (err) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logger.error(err);</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.json({ error: err.message || err.toString() });</span><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span><span>});</span>"
+},
+{
+    "id":"2",   
+    "code":"<span>const mockStoreWithMiddleware = applyMiddleware(</span><span>&nbsp;&nbsp;&nbsp;&nbsp;...middlewares</span><span>)(mockStoreWithoutMiddleware)</span>"
+},
+{
+    "id":"3",   
+    "code":"<span>app.use(serveStatic(path.join(__dirname, '../playground'), {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;lastModified: false,</span><span>etag: false,</span><span>setHeaders: (res, url) => {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (url.indexOf('/index.html') !== -1) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.setHeader('Cache-Control', 'no-cache');</span><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span><span>}</span><span>}));</span>"
+},
+{
+    "id":"4",   
+    "code":"<span>router.get('/books/detail/:slug', async (req, res) => {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;try {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const book = await Book.getBySlug({ slug: req.params.slug });</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.json(book);</span><span>} catch (err) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.json({ error: err.message || err.toString() });</span><span>}&nbsp;&nbsp;&nbsp;&nbsp;</span><span>});</span>"
+},
+{
+    "id":"5",
+    "code":"<span>async function main() {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;const store = createStore(reducer, applyMiddleware(reduxMiddleware));</span><span>&nbsp;&nbsp;&nbsp;&nbsp;console.info('Popup: Init bridge and restore state...');</span><span>&nbsp;&nbsp;&nbsp;&nbsp;await bridge().init(window.browser ? window.browser : window.chrome, !!window.browser, store);</span><span>&nbsp;&nbsp;&nbsp;&nbsp;console.info('Popup: Creating React app...');</span><span>}</span>" 
+},
+{
+    "id":"6",       
+    "code":"<span>router.use((req, res, next) => {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;if (!req.user || !req.user.isAdmin) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.status(401).json({ error: 'Unauthorized' });</span><span>&nbsp;&nbsp;&nbsp;&nbsp;return;</span><span>}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;next();</span><span>});</span>"
+},
+{
+    "id":"7",   
+    "code":"<span>compose(</span><span>&nbsp;&nbsp;&nbsp;&nbsp;applyMiddleware(</span><span>&nbsp;&nbsp;&nbsp;&nbsp;thunk</span><span>&nbsp;&nbsp;&nbsp;&nbsp;),</span><span>&nbsp;&nbsp;&nbsp;&nbsp;window.devToolsExtension ? window.devToolsExtension() : f => f</span><span>)(createStore)</span>"
+},
+{
+    "id":"8",   
+    "code":"<span>router.get('/books', async (req, res) => {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;try {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const books = await Book.list();</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.json(books);</span><span>}&nbsp;&nbsp;&nbsp;&nbsp;catch (err) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.json({ error: err.message || err.toString() });</span><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span><span>});</span>"
+},
+{
+    "id":"9",   
+    "code":"<span>router.get('/', async(function (req, res) {</span><span>try {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;const matches = await(MatchManager.getMatches());</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.status(200);</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.json(matches.map((match) => match.toObject()));</span><span>} catch (error) {</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.status(error.status());</span><span>&nbsp;&nbsp;&nbsp;&nbsp;res.json(error.toJSON());</span><span>}</span><span>}));</span>"
+}
+]
+
